@@ -2,6 +2,9 @@ import pandas as pd
 import joblib
 import streamlit as st
 
+if not os.path.exists("trip_cost_model.pkl"):
+    st.error("🚨 Model file not found! Please download `trip_cost_model.pkl` from the README release page.")
+    st.stop()
 # Load trained ML model
 model = joblib.load("trip_cost_model.pkl")
 
@@ -41,3 +44,4 @@ if st.button("Predict Trip Cost"):
 
     st.success(f"🤖 Predicted Total Trip Cost: ₹{total_cost}")
     st.info(f"💰 Cost Per Person: ₹{cost_per_person}")
+
